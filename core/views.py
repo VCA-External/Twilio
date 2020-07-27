@@ -23,8 +23,8 @@ class CreateTokenView(ObtainAuthToken):
 
 
 
-user = 'SK9055c301c395a98a68a8622eb2a5304d'
-pwd = '4O0rYpjWcd2IKkVncSS7yBaYxutQAnmh'
+user = 'SK7bd24ca754fb718aa9ded7f12a991253'
+pwd = 'C4eIpMfgmlhtXUT87JvFP0BhaZ3WcgnM'
 
 
 class CreateRoomView(APIView):
@@ -42,14 +42,19 @@ class CreateRoomView(APIView):
                     
                     print(call)
                     return Response(call)
-
-                call = req.post("https://video.twilio.com/v1/Rooms/", auth=HTTPBasicAuth(
+                elif maxPart <3: 
+                    call = req.post("https://video.twilio.com/v1/Rooms/", auth=HTTPBasicAuth(
                     user, pwd), data={'UniqueName': unique, "Type": 'peer-to-peer', 'MaxParticipants': maxPart}, headers=head)
+                    print(call)
+                    return Response(call)
+                call = req.post("https://video.twilio.com/v1/Rooms/", auth=HTTPBasicAuth(
+                user, pwd), data={'UniqueName': unique, "Type": 'group-small', 'MaxParticipants': maxPart}, headers=head)
                 print(call)
                 return Response(call)
 
+
             call = req.post("https://video.twilio.com/v1/Rooms/", auth=HTTPBasicAuth(
-                user, pwd), data={'UniqueName': unique, "Type": 'peer-to-peer', 'MaxParticipants': 4}, headers=head)
+                user, pwd), data={'UniqueName': unique, "Type": 'peer-to-peer', 'MaxParticipants': maxPart}, headers=head)
             print(call)
             return Response(call)
 
