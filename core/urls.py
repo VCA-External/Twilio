@@ -6,6 +6,6 @@ app_name ='core'
 
 urlpatterns =[
     path('create/',views.CreateUserView.as_view(), name='create'),
-    path('room/', views.CreateRoomView.as_view(),name='room'), 
+    path('rooms/CreateRoom/', views.CreateRoomView.as_view(),name='room'), 
 ]
 
