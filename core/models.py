@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
-                                       PermissionsMixin                     
-from django.conf import  settings
+                                       PermissionsMixin
+from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -14,8 +14,8 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
 
         return user
-    
-    def create_superuser(self, email,password):
+
+    def create_superuser(self, email, password):
         # Creates and saves a new superuser
         user = self.create_user(email, password)
         user.is_staff = True
@@ -25,7 +25,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    # Custom User model 
+    # Custom User model
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -36,13 +36,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
- 
 
     def __str__(self):
         return self.email
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=50, unique=False)
     last_name = models.CharField(max_length=50, unique=False)
+
+
+# class Room(models.Model):
+#     room = models.CharField(max_length=50, unique=True,
+#                             on_delete=models.CASCADE),
+#     participant = models.TextField(max_length=255)

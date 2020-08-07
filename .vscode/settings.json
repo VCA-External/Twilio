@@ -1,21 +1,6 @@
 {
     "python.linting.enabled": false,
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "python.pythonPath": "C:\\Users\\Karan\\Anaconda3\\envs\\prod\\python.exe"
     
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 }

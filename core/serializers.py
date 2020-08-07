@@ -9,6 +9,12 @@ JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 
+# class RoomSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Room
+#         fields = ('room', 'participant')
+
+
 class UserLoginSerializer(serializers.Serializer):
 
     email = serializers.CharField(max_length=255)
@@ -32,19 +38,19 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(msg, code='authentication')
 
         return {
-            'email':user.email,
+            'email': user.email,
             'token': jwt_token
         }
+
 
 class UserSerializer(serializers.ModelSerializer):
     # serializer for the users objects
 
     class Meta:
         model = User
-        fields =('email', 'password', 'first_name','last_name')
-        extra_kwargs ={'password':{'write_only': True, 'min_length': 5}}
-        
-    
+        fields = ('email', 'password', 'first_name', 'last_name')
+        extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
+
     def create(self, validated_data):
         # Create a new user with encrypted pwd and return it
         return get_user_model().objects.create_user(**validated_data)
@@ -57,5 +63,5 @@ class UserSerializer(serializers.ModelSerializer):
         if password:
             user.set_password(password)
             user.save()
-            
+
         return user

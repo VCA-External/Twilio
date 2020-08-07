@@ -27,7 +27,7 @@ SECRET_KEY = 'n!=m=#vivjtu9i6sd1-1vn9nar5goqy)%5hj1(8$8pxljztgq2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-env.eba-zrseiwbn.us-east-1.elasticbeanstalk.com']
 
 
 # Application definition
@@ -62,7 +62,7 @@ REST_FRAMEWORK = {
 #   'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
 #   'JWT_RESPONSE_PAYLOAD_HANDLER':
 #   'rest_framework_jwt.utils.jwt_response_payload_handler',
- 
+
 #   'JWT_SECRET_KEY': 'SECRET_KEY',
 #   'JWT_GET_USER_SECRET_KEY': None,
 #   'JWT_PUBLIC_KEY': None,
@@ -80,28 +80,28 @@ REST_FRAMEWORK = {
 #   'JWT_AUTH_COOKIE': None,
 # }
 SIMPLE_JWT = {
-'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
-'ROTATE_REFRESH_TOKENS': False,
-'BLACKLIST_AFTER_ROTATION': True,
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
 
-'ALGORITHM': 'HS256',
-'VERIFYING_KEY': None,
-'AUDIENCE': None,
-'ISSUER': None,
+    'ALGORITHM': 'HS256',
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
 
-'AUTH_HEADER_TYPES': ('Bearer',),
-'USER_ID_FIELD': 'id',
-'USER_ID_CLAIM': 'user_id',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
 
-'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-'TOKEN_TYPE_CLAIM': 'token_type',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
 
-'JTI_CLAIM': 'jti',
+    'JTI_CLAIM': 'jti',
 
-'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
-'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=10),
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=10),
 }
 
 
@@ -171,7 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Pacific'
 
 USE_I18N = True
 
@@ -184,5 +184,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
-AUTH_USER_MODEL ="core.User"
+AUTH_USER_MODEL = "core.User"
