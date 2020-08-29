@@ -49,7 +49,7 @@ pwd = 'oRob0tiWhYPm9gLQChE9FxX1vViOsI2U'
 class CreateRoomView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def post(self, request):
+    def post(self, request,uniquename):
         head = {"Content-Type": "application/x-www-form-urlencoded"}
         payload = {
             "MaxParticipants": 4,
