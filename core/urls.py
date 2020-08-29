@@ -6,7 +6,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('create/', views.CreateUserView.as_view(), name='create'),
-    path('rooms/CreateRoom/', views.CreateRoomView.as_view(), name='room'),
+    path('rooms/CreateRoom/<uniquename>/', views.CreateRoomView.as_view(), name='room'),
     path('rooms/deleteRoom/<uniquename>/',
          views.DeleteRoom.as_view(), name="deleteRoom"),
     path('rooms/CompleteRoom/<roomUniqueName>/',

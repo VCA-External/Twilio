@@ -2,11 +2,11 @@ from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 from core.models import User
-from rest_framework_jwt.settings import api_settings
+# from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 
-JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
-JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
+# JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
+# JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 
 # class RoomSerializer(serializers.ModelSerializer):

@@ -7,6 +7,22 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 import requests as req
 from requests.auth import HTTPBasicAuth
+import json
+def change_format_resp(b):
+        d=json.loads(b)
+        a={}
+        a["id"]=d["sid"]
+        a["roomUniqueName"]=d["unique_name"]
+        a["rooomstatus"]=d["status"]
+        a["maxparticipants"]=d["max_participants"]
+        a["type"]=d["type"]
+        a["startDt"]=None
+        a["endDt"]=None
+        a["duration"]=0
+        a["createdDt"]=d["date_created"]
+        a["modifiedDt"]=d["date_updated"]
+        a["participants"]=[]
+        return json.dumps(a)
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -54,6 +70,12 @@ class CreateRoomView(APIView):
             user, pwd), headers=head, data=payload)
 
         return Response(call.json())
+    
+    def get(self,request,uniquename):
+        head = {"Content-Type": "application/x-www-form-urlencoded"}
+        call = req.get('https://video.twilio.com/v1/Rooms/'+uniquename, auth=HTTPBasicAuth(
+            user, pwd),)
+        return Response(call.json())
 
 
 class DeleteRoom(APIView):
@@ -64,8 +86,12 @@ class DeleteRoom(APIView):
 
 class CompleteRoom(APIView):
     permission_classes = (IsAuthenticated,)
+    
 
-    def get(self, request, roomUniqueName):  # only one field what is it?
+    def get(self, request, roomUniqueName):
+          # only one field what is it?
+        
+
         head = {"Content-Type": "application/x-www-form-urlencoded"}
         payload = {
             "Status": "completed"
@@ -73,4 +99,4 @@ class CompleteRoom(APIView):
         call = req.post("https://video.twilio.com/v1/Rooms/"
                         + roomUniqueName, data=payload, auth=HTTPBasicAuth(
                             user, pwd))
-        return Response(call.json())
+        return Response(change_format_resp(call.json()))
